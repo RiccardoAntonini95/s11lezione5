@@ -1,3 +1,11 @@
+React version 18.2.0, Bootstrap version 5.3.2 and React Bootstrap 2.9.1
+
+Before starting, run "npm i" from the IDE terminal
+
+For this project I install these packages @reduxjs/toolkit bootstrap react-bootstrap react-bootstrap-icons react-redux react-router-dom react-icons
+
+This app is designed for Desktop View.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
