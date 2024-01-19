@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import favouriteReducer from '../reducers/favourite'
+import trackReducer from '../reducers/track'
 
 const bigReducer = combineReducers({
-    favourite: favouriteReducer
+    favourite: favouriteReducer,
+    track: trackReducer
 })
 
 const store = configureStore({

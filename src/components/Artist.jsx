@@ -1,8 +1,8 @@
-import { Row, Col, Button } from "react-bootstrap"
-import MyNav from "./MyNav"
-import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 import CardTrack from "./CardTrack"
+import MyNav from "./MyNav"
+import { Row, Col, Button } from "react-bootstrap"
 
 const Artist = () => {
   const params = useParams()
@@ -42,7 +42,7 @@ useEffect(() => {
               <Col className="col-12 col-md-10 col-lg-10 mt-5">
                 <h2 className="titleMain">{currentArtist[0].artist.name}</h2>
                 <div id="followers">
-                  {currentArtist[0].artist.nb_fan} followers{" "}
+                  {currentArtist[0].rank} followers{" "}
                 </div>
                 <div
                   className="d-flex justify-content-center"
@@ -69,26 +69,10 @@ useEffect(() => {
                   <h2 className="text-white font-weight-bold">Tracks</h2>
                 </div>
                 <div className="pt-5 mb-5">
-                  <Row id="apiLoaded"> {/* mappare */}
+                  <Row id="apiLoaded">
                   {currentArtist.map((artist, i) => (
                     <CardTrack key={i} data={artist} />
                   ))}
-{/*                     <div className="col-sm-auto col-md-auto text-center mb-5">
-                      <Link to={`/album/${currentArtist[0].album.id}`}>
-                        <img
-                          className="img-fluid"
-                          src={currentArtist[0].album.cover_medium}
-                        />
-                      </Link>
-                      <p className="m-0">
-                        <a href="#">Track: {currentArtist[0].title}</a>
-                      </p>
-                      <p>
-                        <Link to={`/album/${currentArtist[0].album.id}`}>
-                          Album: {currentArtist[0].album.title}
-                        </Link>
-                      </p>
-                    </div> */}
                   </Row>
                 </div>
               </Col>

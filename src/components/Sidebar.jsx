@@ -1,9 +1,8 @@
 import React from "react";
+import { useState } from "react";
+import Spotify_Logo from "../assets/img/Spotify_Logo.png"
 import { Navbar, Nav, InputGroup, FormControl, Button } from "react-bootstrap";
 import { FaHome, FaBookOpen } from "react-icons/fa";
-import Spotify_Logo from "../assets/img/Spotify_Logo.png"
-import { useState } from "react";
-/* import { useSelector, useDispatch } from "react-redux"; */
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -18,10 +17,6 @@ const Sidebar = () => {
   const handleNavigate = () => {
     navigate(`/artist/${query}`)
   } 
-
-  const handleNavigateHome = () => {
-    navigate("/")
-  }
 
    return (
     <div className="col-2">
@@ -51,7 +46,7 @@ const Sidebar = () => {
                 </li>
                 <li className="m-2">
                   <FaBookOpen className="fs-3 mx-2" />
-                  <Link to={"/favourites"}>Your Library</Link>
+                  <Link to={"/favourites"}>Favourites</Link>
                 </li>
                 <li>
                   <InputGroup className="mt-3 p-2">

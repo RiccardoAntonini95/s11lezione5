@@ -1,9 +1,10 @@
-import { Row, Col } from "react-bootstrap"
-import MyNav from "./MyNav"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import MyNav from "./MyNav"
 import Tracklist from "./Tracklist"
+import { Row, Col } from "react-bootstrap"
 import { header4 } from "../redux/actions"
+
 
 const Album = () => {
   const params = useParams()

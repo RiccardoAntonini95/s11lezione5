@@ -1,65 +1,10 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import MyNav from "./MyNav";
 import { useEffect, useState } from "react";
+import MyNav from "./MyNav";
 import CardAlbum from "./CardAlbum";
-
-const prova = {
-  "id": 6461440,
-  "readable": true,
-  "title": "Love The Way You Lie",
-  "title_short": "Love The Way You Lie",
-  "title_version": "",
-  "link": "https://www.deezer.com/track/6461440",
-  "duration": 263,
-  "rank": 945116,
-  "explicit_lyrics": true,
-  "explicit_content_lyrics": 1,
-  "explicit_content_cover": 1,
-  "preview": "https://cdns-preview-1.dzcdn.net/stream/c-1ed50e5b3118c99be858fc305609e62a-15.mp3",
-  "md5_image": "be682506145061814eddee648edb7c59",
-  "artist": {
-  "id": 13,
-  "name": "Eminem",
-  "link": "https://www.deezer.com/artist/13",
-  "picture": "https://api.deezer.com/artist/13/image",
-  "picture_small": "https://e-cdns-images.dzcdn.net/images/artist/19cc38f9d69b352f718782e7a22f9c32/56x56-000000-80-0-0.jpg",
-  "picture_medium": "https://e-cdns-images.dzcdn.net/images/artist/19cc38f9d69b352f718782e7a22f9c32/250x250-000000-80-0-0.jpg",
-  "picture_big": "https://e-cdns-images.dzcdn.net/images/artist/19cc38f9d69b352f718782e7a22f9c32/500x500-000000-80-0-0.jpg",
-  "picture_xl": "https://e-cdns-images.dzcdn.net/images/artist/19cc38f9d69b352f718782e7a22f9c32/1000x1000-000000-80-0-0.jpg",
-  "tracklist": "https://striveschool-api.herokuapp.com/api/deezer/artist/13/top?limit=50",
-  "type": "artist"
-  },
-  "album": {
-  "id": 595243,
-  "title": "Recovery",
-  "cover": "https://api.deezer.com/album/595243/image",
-  "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/be682506145061814eddee648edb7c59/56x56-000000-80-0-0.jpg",
-  "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/be682506145061814eddee648edb7c59/250x250-000000-80-0-0.jpg",
-  "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/be682506145061814eddee648edb7c59/500x500-000000-80-0-0.jpg",
-  "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/be682506145061814eddee648edb7c59/1000x1000-000000-80-0-0.jpg",
-  "md5_image": "be682506145061814eddee648edb7c59",
-  "tracklist": "https://api.deezer.com/album/595243/tracks",
-  "type": "album"
-  },
-  "type": "track"
-  }
+import { Container, Row, Col } from "react-bootstrap";
 
 const Home = () => {
-  
-  let header = {
-    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-    'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0'
-  }
-  let header2 = {
-    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-    'X-RapidAPI-Key': 'c74a0a086emshf55ffb8dbdcb59ap17a486jsnb83bb4d3e387'
-  }
-  let header3 = {
-    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-    'X-RapidAPI-Key': '222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20'
-  }
-
 
   const[songInfo , setSongInfo] = useState([])
   const[songInfo2 , setSongInfo2] = useState([])
@@ -71,7 +16,6 @@ const Home = () => {
         'https://striveschool-api.herokuapp.com/api/deezer/search?q=queen' ,
         {
           method: 'GET',
-          /* header3, */
         }
       )
       if (response.ok) {
@@ -91,7 +35,6 @@ const Home = () => {
         'https://striveschool-api.herokuapp.com/api/deezer/search?q=adele' ,
         {
           method: 'GET',
-          /* header3, */
         }
       )
       if (response.ok) {
@@ -111,7 +54,6 @@ const Home = () => {
         'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem' ,
         {
           method: 'GET',
-          /* header3, */
         }
       )
       if (response.ok) {
