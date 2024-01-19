@@ -16,8 +16,8 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path='/' element = {<Home />} />
-            <Route path='/album' element = {<Album />} />
-            <Route path='/artist' element = {<Artist />} />
+            <Route path='/album/:elementId' element = {<Album />} />
+            <Route path='/artist/:name' element = {<Artist />} />
           </Routes>
           <Player />
         </BrowserRouter>

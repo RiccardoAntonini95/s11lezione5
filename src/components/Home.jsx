@@ -62,23 +62,62 @@ const Home = () => {
 
 
   const[songInfo , setSongInfo] = useState([])
-  console.log(songInfo, "prima della fetch")
+  const[songInfo2 , setSongInfo2] = useState([])
+  const[songInfo3 , setSongInfo3] = useState([])
 
    const handleArtist = async () => {
-    try {  /* QUESTA FETCH VA FATTA DALLE ACTION E NELLO USEEFFECT CI METTO LA ACTION */
+    try {
+      let response = await fetch(
+        'https://striveschool-api.herokuapp.com/api/deezer/search?q=queen' ,
+        {
+          method: 'GET',
+          /* header3, */
+        }
+      )
+      if (response.ok) {
+        let result = await response.json()
+        let songInfoCut = result.data.slice(0, 4)
+        setSongInfo(songInfoCut)
+      } else {
+        console.log('error')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+   const handleArtist2 = async () => {
+    try {
+      let response = await fetch(
+        'https://striveschool-api.herokuapp.com/api/deezer/search?q=adele' ,
+        {
+          method: 'GET',
+          /* header3, */
+        }
+      )
+      if (response.ok) {
+        let result = await response.json()
+        let songInfoCut = result.data.slice(0, 4)
+        setSongInfo2(songInfoCut)
+      } else {
+        console.log('error')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+   const handleArtist3 = async () => {
+    try {
       let response = await fetch(
         'https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem' ,
         {
           method: 'GET',
           /* header3, */
         }
-      ) // gets the information
+      )
       if (response.ok) {
-        let result = await response.json() // transforms the response to json
-        let songInfo2 = result.data.slice(0, 4) //prendo solo i primi 4 risultati
-        console.log(songInfo2, "risultato della fetch")
-        setSongInfo(songInfo2)
-        console.log(songInfo, "state dopo il set song")
+        let result = await response.json()
+        let songInfoCut = result.data.slice(0, 4)
+        setSongInfo3(songInfoCut)
       } else {
         console.log('error')
       }
@@ -89,83 +128,71 @@ const Home = () => {
 
   useEffect(() => {
     handleArtist()
-  }, [])  /* QUA DENTRO USO LA ACTION E TRAMITE USESELECTOR RECUPERO LO STATE */
-
-
-
-
+    handleArtist2()
+    handleArtist3()
+  }, []) 
 
 
   return (
     <div className="col-12 col-md-9 offset-md-3 mainPage">
       {songInfo && (
         <Container>
-        <MyNav />
-        <Row>
-          <Col className="col-10">
-            <div id="searchResults" style={{ display: "none" }}>
-              <h2>Search Results</h2>
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="col-10">
-            <div id="rock">
-              <h2>Rock Classics</h2>
-              <Row
-                className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                id="rockSection"
-              > 
-              
-              
-               {/* qua va la card */}
-                <Col className="text-center" /* id=${songInfo.id} */>
-                  <a href="/album_page.html?id=${songInfo.album.id}">
-                    <img src={prova.album.cover_medium} ></img>
-                  </a>
-                  <p className="m-0">
-                    <a href="/album_page.html?id=${prova.album.id}">
-                      Album: {prova.album.title}
-                    </a>
-                  </p>
-                  <p>
-                    <a href="/artist_page.html?id=${prova.artist.id}">
-                      Artist: {prova.artist.name}
-                    </a>
-                  </p>
-                </Col>
-                {/* <CardAlbum /> */}
-
-              </Row>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="col-10">
-            <div id="pop">
-              <h2>Pop Culture</h2>
-              <Row
-                className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                id="popSection"
-              >{/* ANCHE QUA VANNO CARD */}</Row>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="col-10">
-            <div id="hiphop">
-              <h2>#HipHop</h2>
-              <Row
-                className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                id="hipHopSection"
-              >{/* ANCHE QUA VANNO CARD */}</Row>
-            </div>
-          </Col>
-        </Row>
-      </Container>    
-
-      )}   
+          <MyNav />
+          <Row>
+            <Col className="col-10">
+              <div id="searchResults" style={{ display: "none" }}>
+                <h2>Search Results</h2>
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="col-10">
+              <div id="rock">
+                <h2>Rock Classics</h2>
+                <Row
+                  className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  id="rockSection"
+                >
+                  {songInfo.map((artist1, i) => (
+                    <CardAlbum key={i} data={artist1} />
+                  ))}
+                </Row>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="col-10">
+              <div id="pop">
+                <h2>Pop Culture</h2>
+                <Row
+                  className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  id="popSection"
+                >
+                 {songInfo2.map((artist, i) => (
+                    <CardAlbum key={i} data={artist} />
+                  ))}
+                </Row>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="col-10">
+              <div id="hiphop">
+                <h2>#HipHop</h2>
+                <Row
+                  className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  id="hipHopSection"
+                >
+                  {songInfo3.map((artist, i) => (
+                    <CardAlbum key={i} data={artist} />
+                  ))}
+                </Row>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      )}
     </div>
   );
 };

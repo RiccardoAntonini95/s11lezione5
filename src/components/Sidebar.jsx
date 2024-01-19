@@ -2,9 +2,27 @@ import React from "react";
 import { Navbar, Nav, InputGroup, FormControl, Button } from "react-bootstrap";
 import { FaHome, FaBookOpen } from "react-icons/fa";
 import Spotify_Logo from "../assets/img/Spotify_Logo.png"
+import { useState } from "react";
+/* import { useSelector, useDispatch } from "react-redux"; */
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Sidebar = () => {
+  const [query, setQuery] = useState('')
+  const navigate = useNavigate()
+  
+  const handleChange = (e) => {
+    setQuery(e.target.value)
+  }
+
+  const handleNavigate = () => {
+    navigate(`/artist/${query}`)
+  } 
+
+  const handleNavigateHome = () => {
+    navigate("/")
+  }
+
    return (
     <div className="col-2">
       <Navbar
@@ -13,7 +31,8 @@ const Sidebar = () => {
         id="sidebar"
       >
         <div className="nav-container mt-4">
-          <Navbar.Brand className="ms-2" href="index.html">
+          <Link to={"/"}>
+            <Navbar.Brand className="ms-2">
             <img
               src={Spotify_Logo}
               alt="Spotify_Logo"
@@ -21,27 +40,28 @@ const Sidebar = () => {
               height="40"
             />
           </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="navbarNavAltMarkup" />
           <Navbar.Collapse id="navbarNavAltMarkup" className="mt-5 me-2">
             <Nav className="navbar-nav">
               <ul className="text-secondary">
                 <li className="m-2">
                   <FaHome className="fs-3 mx-2" />
-                  <a haref="index.html">Home</a>
+                  <Link to={"/"}>Home</Link>
                 </li>
                 <li className="m-2">
                   <FaBookOpen className="fs-3 mx-2" />
-                  <a haref="#">Your Library</a>
+                  <Link to={"/favourites"}>Your Library</Link>
                 </li>
                 <li>
                   <InputGroup className="mt-3 p-2">
                     <FormControl
                       type="text"
-                      /* className="form-control" */
                       id="searchField"
                       placeholder="Search"
                       aria-label="Search"
                       aria-describedby="basic-addon2"
+                      onChange={handleChange}
                     />
 
                     <Button
@@ -49,7 +69,7 @@ const Sidebar = () => {
                       size="sm"
                       type="button"
                       id="button-addon1"
-                      /* onClick={() => search()} */
+                       onClick={() => handleNavigate()}
                     >
                       GO
                     </Button>

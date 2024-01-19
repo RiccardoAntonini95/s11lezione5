@@ -1,21 +1,21 @@
 import { Col } from "react-bootstrap"
 import { Link } from "react-router-dom";
 
-const CardAlbum = () => {
+const CardAlbum = ({data}) => {
     return (
-      <Col className="text-center" /* id=${songInfo.id} */>
-        <a href="/album_page.html?id=${songInfo.album.id}">
-          <img src={songInfo.album.cover_medium}></img>
-        </a>
+      <Col className="text-center">
+        <Link to={`/album/${data.album.id}`}>
+          <img src={data.album.cover_medium}></img>
+        </Link>
         <p className="m-0">
-          <a href="/album_page.html?id=${songInfo.album.id}">
-            Album: {songInfo.album.title}
-          </a>
+        <Link to={`/album/${data.album.id}`}>
+            Album: {data.album.title}
+        </Link>
         </p>
         <p>
-          <a href="/artist_page.html?id=${songInfo.artist.id}">
-            Artist: {songInfo.artist.name}
-          </a>
+        <Link to={`/artist/${data.artist.name.toLowerCase()}`}>
+            Artist: {data.artist.name}
+        </Link>
         </p>
       </Col>
     );
