@@ -1,4 +1,4 @@
-React version 18.2.0, Bootstrap version 5.3.2 and React Bootstrap 2.9.1
+React version 18.2.0, Bootstrap version 5.3.2 and React Bootstrap 2.10.0
 
 Before starting, run "npm i" from the IDE terminal
 
